@@ -14,6 +14,7 @@ with open(csvpath) as csvfile:
     tot_months = 0
     net_pl = 0
     pl_list = []
+    month_list = []
     for row in csvreader:
         # total number of months
         tot_months = tot_months + 1
@@ -24,6 +25,8 @@ with open(csvpath) as csvfile:
         # create list for avg of profit/loss
         pl_list.append(int(row[1]))           
 
+        #create the month list
+        month_list.append(row[0])
     
     #loop through the list to get the changes from month to month
     pl_change = []
@@ -41,22 +44,22 @@ with open(csvpath) as csvfile:
 
 
 avg_change = round(total_pl_change/len(pl_change),2)
-print(tot_months)
-print(net_pl)
-print(len(pl_list))
-print(pl_change)
-print(len(pl_change))
-print(total_pl_change)
-print(avg_change)
+max_index = pl_change.index(max(pl_change)) +1
+min_index = pl_change.index(min(pl_change)) +1
+max_month = month_list[max_index]
+min_month = month_list[min_index]
+max_change = max(pl_change)
+min_change = min(pl_change)
 
-
-
+print(" ")
 print("Financial Analysis")
 print("-------------------------------")
 print(f"Total Months: {tot_months}")
 print(f"Total: ${net_pl}")
 print(f"Average Change: ${avg_change}")
-
+print(f"Greatest Increase in Profits: {max_month} (${max_change})")
+print(f"Greatest Decrease in Profits: {min_month} (${min_change})")
+print(" ")
 
 
 
