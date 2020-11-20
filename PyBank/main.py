@@ -40,13 +40,24 @@ with open(csvpath) as csvfile:
         ele += 1
 
 
+avg_change = round(total_pl_change/len(pl_change),2)
 print(tot_months)
 print(net_pl)
 print(len(pl_list))
 print(pl_change)
 print(len(pl_change))
 print(total_pl_change)
-print(pl_change[0])
+print(avg_change)
+
+
+
+print("Financial Analysis")
+print("-------------------------------")
+print(f"Total Months: {tot_months}")
+print(f"Total: ${net_pl}")
+print(f"Average Change: ${avg_change}")
+
+
 
 
 
