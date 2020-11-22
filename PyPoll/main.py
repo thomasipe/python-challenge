@@ -13,7 +13,7 @@ with open(csvpath) as csvfile:
 
     #header 
     csv_header = next(csvreader)
-    print(f"CSV Header: {csv_header}") 
+    #print(f"CSV Header: {csv_header}") 
 
     tot_votes = 0
     
@@ -31,11 +31,29 @@ with open(csvpath) as csvfile:
         else:
             d[item] = 1
 
-    for k, v in d.items() :
-        print(str(k)+':'+str(v))
+# Print the results
+
+dl = "--------------------------"
+tv = (str(tot_votes))
+
+print(" ")
+print("Election Results")
+print(dl)
+print(tv)
+print(dl)
+
+for k, v in d.items() :
+    pv = v/tot_votes *100
+    pct_of_vote = str(round(pv,3))
+    
+    print(str(k)+': '+ pct_of_vote + '% ('+str(v)+')')
+print(dl)
+print("Winner: ")
+print(dl)
+print(" ")
 
 
-unique_list = list(set(candidates))
-print(unique_list)
-print(len(unique_list))
-print(tot_votes)
+#unique_list = list(set(candidates))
+#print(unique_list)
+#print(len(unique_list))
+#print(tot_votes)
