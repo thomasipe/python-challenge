@@ -1,5 +1,6 @@
 import os
 import csv
+import sys
 
 # Path to collect data from the Resources folder
 csvpath = os.path.join('Resources', 'election_data.csv')
@@ -33,28 +34,42 @@ with open(csvpath) as csvfile:
 
 # Print the results
 winner = max(d, key=d.get)
-print(winner)
 dl = "--------------------------"
 tv = (str(tot_votes))
 
 print(" ")
 print("Election Results")
 print(dl)
-print(tv)
+print(f"Total Votes: {tv}")
 print(dl)
 
 for k, v in d.items() :
     pv = v/tot_votes *100
     pct_of_vote = str(round(pv,3))
-    
     print(str(k)+': '+ pct_of_vote + '% ('+str(v)+')')
 print(dl)
-print("Winner: ")
+print(f"Winner: {winner}")
 print(dl)
 print(" ")
 
+# save the results out to a file in the Analysis directory
 
-#unique_list = list(set(candidates))
-#print(unique_list)
-#print(len(unique_list))
-#print(tot_votes)
+# Now print out the report to the analysis folder
+output_file = os.path.join('analysis', 'election_results_rpt.txt')
+sys.stdout = open(output_file, "w")
+print(" ")
+print("Election Results")
+print(dl)
+print(f"Total Votes: {tv}")
+print(dl)
+
+for k, v in d.items() :
+    pv = v/tot_votes *100
+    pct_of_vote = str(round(pv,3))
+    print(str(k)+': '+ pct_of_vote + '% ('+str(v)+')')
+print(dl)
+print(f"Winner: {winner}")
+print(dl)
+print(" ")
+
+sys.stdout.close()
