@@ -32,7 +32,8 @@ with open(csvpath) as csvfile:
             d[item] = 1
 
 # Print the results
-
+winner = max(d, key=d.get)
+print(winner)
 dl = "--------------------------"
 tv = (str(tot_votes))
 
